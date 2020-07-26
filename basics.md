@@ -65,6 +65,7 @@ i2 = parse(Int8, "22")
 s1 = "Random string surrounded by double quote"
 # Note use """blah blah ... """ if you have multiline strings to declare.
 println(length(s1))
+# index starts at 1
 println(s1[1])
 println(s1[end])
 println(s1[1:4])
@@ -159,9 +160,82 @@ println(minimum(a4))
 println(a4 * 2)
 ```
 
-## Tuple
+Store functions in an array.
 
+```
+a6 = [sin, cos, tab]
+for i in a6
+  print(i(0))
+end
+```
+
+Multidim array
+
+```
+# define 2 x 4
+a7 = [1 2 3 4; 5 6 7 8]
+for i = 1:2, j = 1:4
+  @printf("%d ", a7[i, j])
+end
+
+# second col
+println(a7[:, 2])
+# second row
+println(a7[2, :])
+
+# arrays from ranges
+a8 = collect(1:5)
+# step forward 2, 4, 6, ... (or backward with - as step)
+a9 = collect(2:2:10)
+# array from comprehension
+a10 = [n^2 for n in 1:4]
+# add a value to array
+push!(a10, 25)
+a11 = [n * m for n in 1:3, m in 1:5]
+println(a11)
+# random values
+a12 = rand(0:9,3,5)
+for n = 1:3
+  for m = 1:5
+    print(a12[n,m])
+  end
+  println()
+end
+```
+
+## Tuple
+Cannot be changed once defined.
+
+```
+t1 = (1, 2, 3, 4)
+t2 = ((1, 2), (3, 4))
+t3 = (sue = ("Sue", 100), paul = ("Paul", 23))
+println(t3.sue)
+```
 ## Dict
+
+Key value pairs with unique keys.
+
+```
+d1 = Dict("pi"=> 3.14, "e"=>2.718)
+println(d1["pi"])
+d1["golden"] = 1.618
+delete!(d1, "pi")
+# does it have a key?
+println(haskey(d1, "golden"))
+# get the full thing
+println(in("golden"=>1.618))
+println(keys(d1))
+println(values(d1))
+
+for kv in d1
+  println(kv)
+end
+
+for (key, value) in d1
+  println(key, " : ", value)
+end
+```
 
 ## Set
 
